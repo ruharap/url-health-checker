@@ -1,0 +1,11 @@
+# Compiled binary
+urlchecker
+url-health-checker
+*.exe
+
+# Go build artifacts
+*.test
+*.out
+
+# OS files
+.DS_Store
