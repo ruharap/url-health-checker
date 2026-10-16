@@ -12,5 +12,6 @@ Run:
 Demonstrations:
   go run ./race-demo       (unprotected counter, usually prints less than 1000)
   go run ./deadlock-demo   (ends with "fatal error: all goroutines are asleep - deadlock!")
+  go run ./racefix-demo    (same counter guarded by a mutex, prints 1000)
 
 Repository: https://github.com/ruharap/url-health-checker
