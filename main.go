@@ -64,7 +64,7 @@ func (c *HTTPChecker) Check(ctx context.Context, url string) Result {
 }
 
 // Stats is shared between goroutines, so access is guarded by a mutex
-// (competition synchronisation, Module 10).
+// (competition synchronisation).
 type Stats struct {
 	mu     sync.Mutex
 	ok     int
@@ -104,6 +104,7 @@ func main() {
 	workers := flag.Int("workers", 3, "number of concurrent workers")
 	timeout := flag.Duration("timeout", 5*time.Second, "per-request timeout")
 	flag.Parse()
+	start := time.Now()
 
 	urls := flag.Args()
 	if len(urls) == 0 {
@@ -167,6 +168,7 @@ func main() {
 	if checked > 0 {
 		fmt.Printf("Average response time: %v\n", (stats.total / time.Duration(checked)).Round(time.Millisecond))
 	}
+	fmt.Printf("Total time: %v\n", time.Since(start).Round(time.Millisecond))
 	if ctx.Err() != nil {
 		fmt.Println("Run was interrupted before all URLs were checked.")
 	}
